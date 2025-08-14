@@ -1,8 +1,6 @@
 # Steps to reproduce
 
-Update `dsn` value in the `src/sentry-instrumentation.mjs` file with valid dsn url.
-
-## Memory leak: "@sentry/sveltekit": "9.28.1" or higher
+## Memory leak: "better-auth": "1.3.0" or higher
 
 - Run `npm i` to update the dependencies.
 - Run `npm build` to build the server code.
@@ -15,10 +13,12 @@ Update `dsn` value in the `src/sentry-instrumentation.mjs` file with valid dsn u
 - Run the `npm ab` command to start a simple Apache Bench GET request loop to the server.
 - Monitor the memory usage in the timeline and note it is growing and not being cleared out.
 
-## No memory leak: "@sentry/sveltekit": "9.28.0"
+To stop the memory leak, comment out the plugins in the SSO config and rerun the test...or downgrade to 1.2.12
 
-- Stop any running commands.
-- Downgrade @sentry/sveltekit to "9.28.0" in package.json
+## No memory leak: "better-auth": "1.2.12"
+
+- Stop all running commands, `start` and `ab`.
+- Downgrade better-auth to "1.2.12" in package.json
 - Run `npm i` to update dependencies.
 - Run `npm build` to build the server code.
 - Run `npm start` to start the server.
